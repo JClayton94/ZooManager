@@ -31,6 +31,9 @@ public class AnimalsDataModel {
 	private Long KeeperID;
 
 	private String Notes;
+	
+	public AnimalsDataModel() {
+	}
 
 	public AnimalsDataModel(Long iD, @NotBlank String speices, String name, @NotBlank Long enclosureID,
 			@NotBlank Long keeperID, String notes) {

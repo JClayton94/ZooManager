@@ -21,6 +21,10 @@ public class EnclosuresDataModel {
 	private String Name;
 
 	private String Features;
+	
+	public EnclosuresDataModel() {
+		
+	}
 
 	public EnclosuresDataModel(Long iD, String name, String features) {
 		ID = iD;

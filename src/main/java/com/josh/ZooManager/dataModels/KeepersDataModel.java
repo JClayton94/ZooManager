@@ -1,10 +1,16 @@
 package com.josh.ZooManager.dataModels;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -21,6 +27,13 @@ public class KeepersDataModel {
 
 	@NotBlank
 	private String Name;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "keepers")
+	private Set<AnimalsDataModel> animals = new HashSet<>();  
+	
+	public KeepersDataModel() {
+		
+	}
 
 	public KeepersDataModel(Long iD, @NotBlank String name) {
 		ID = iD;
