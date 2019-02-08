@@ -2,9 +2,12 @@ package com.josh.ZooManager.dataModels;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -20,29 +23,44 @@ public class AnimalsDataModel {
 	private Long ID;
 
 	@NotBlank
-	private String Speices;
+	private String speices;
 
-	private String Name;
+	private String name;
 
-	@NotBlank
-	private Long EnclosureID;
+	private String notes;
 
-	@NotBlank
-	private Long KeeperID;
+	private Long enclosureID;
 
-	private String Notes;
+	private Long keeperID;
+
 	
 	public AnimalsDataModel() {
 	}
 
-	public AnimalsDataModel(Long iD, @NotBlank String speices, String name, @NotBlank Long enclosureID,
-			@NotBlank Long keeperID, String notes) {
+	public AnimalsDataModel(Long iD, @NotBlank String speices, String name, String notes, Long enclosureID,
+			Long keeperID) {
 		ID = iD;
-		Speices = speices;
-		Name = name;
-		EnclosureID = enclosureID;
-		KeeperID = keeperID;
-		Notes = notes;
+		this.speices = speices;
+		this.name = name;
+		this.notes = notes;
+		this.enclosureID = enclosureID;
+		this.keeperID = keeperID;
+	}
+
+	public Long getEnclosureID() {
+		return enclosureID;
+	}
+
+	public void setEnclosureID(Long enclosureID) {
+		this.enclosureID = enclosureID;
+	}
+
+	public Long getKeeperID() {
+		return keeperID;
+	}
+
+	public void setKeeperID(Long keeperID) {
+		this.keeperID = keeperID;
 	}
 
 	public Long getID() {
@@ -54,43 +72,27 @@ public class AnimalsDataModel {
 	}
 
 	public String getSpeices() {
-		return Speices;
+		return speices;
 	}
 
 	public void setSpeices(String speices) {
-		Speices = speices;
+		this.speices = speices;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
-	}
-
-	public Long getEnclosureID() {
-		return EnclosureID;
-	}
-
-	public void setEnclosureID(Long enclosureID) {
-		EnclosureID = enclosureID;
-	}
-
-	public Long getKeeperID() {
-		return KeeperID;
-	}
-
-	public void setKeeperID(Long keeperID) {
-		KeeperID = keeperID;
+		this.name = name;
 	}
 
 	public String getNotes() {
-		return Notes;
+		return notes;
 	}
 
 	public void setNotes(String notes) {
-		Notes = notes;
+		this.notes = notes;
 	}
 
 }

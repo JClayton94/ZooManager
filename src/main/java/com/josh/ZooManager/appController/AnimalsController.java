@@ -50,7 +50,7 @@ public class AnimalsController {
 	@PutMapping("/animal/{id}")
 	public AnimalsDataModel updateAnimal(@PathVariable(value = "id")Long animalID, @Valid @RequestBody AnimalsDataModel animalDetails) {
 		
-		AnimalsDataModel animal  = repo.findById(animalID).orElseThrow(() -> new ResourceNotFoundException("Person", "id", animalID));
+		AnimalsDataModel animal  = repo.findById(animalID).orElseThrow(() -> new ResourceNotFoundException("Animal", "id", animalID));
 		
 		animal.setSpeices(animalDetails.getSpeices());
 		

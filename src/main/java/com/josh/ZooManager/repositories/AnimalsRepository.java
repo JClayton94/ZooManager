@@ -8,7 +8,7 @@ import com.josh.ZooManager.dataModels.AnimalsDataModel;
 
 public interface AnimalsRepository extends JpaRepository<AnimalsDataModel, Long> {
 	
-	 List<AnimalsDataModel> findBySpeices(String vehicleType);
+	 List<AnimalsDataModel> findBySpeices(String speices);
 
 	 
 }

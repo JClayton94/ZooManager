@@ -27,9 +27,7 @@ public class KeepersDataModel {
 
 	@NotBlank
 	private String Name;
-	
-	@OneToMany(targetEntity = com.josh.ZooManager.dataModels.AnimalsDataModel.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "keepers")
-	private Set<AnimalsDataModel> animals = new HashSet<>();  
+
 	
 	public KeepersDataModel() {
 		

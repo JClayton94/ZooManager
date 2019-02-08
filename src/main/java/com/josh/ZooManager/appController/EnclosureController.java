@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.josh.ZooManager.SpringBootException.ResourceNotFoundException;
 import com.josh.ZooManager.dataModels.EnclosuresDataModel;
 import com.josh.ZooManager.repositories.EnclosuresRepository;
 
+@RestController
+@RequestMapping("/enclosures")
 public class EnclosureController {
 	
 	@Autowired 
