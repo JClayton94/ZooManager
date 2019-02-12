@@ -2,6 +2,36 @@ let AnimalsArray = [];
 let KeepersArray = [];
 let EnclosuresArray = [];
 
+let testData = [
+    {
+        "test1": "1",
+        "test2": "2",
+        "test3": "3",
+        "test4": "4",
+        "test5": "5"
+    },
+    {
+        "test1": "1",
+        "test2": "2",
+        "test3": "3",
+        "test4": "4",
+        "test5": "5"
+    },
+    {
+        "test1": "1",
+        "test2": "2",
+        "test3": "3",
+        "test4": "4",
+        "test5": "5"
+    }
+]
+
+function getTestData() {
+
+    return testData;
+
+}
+
 function getAnimalsData(){
     var requestURL = 'http://192.168.1.200:8080/animals/allAnimals';
     var request = new XMLHttpRequest();
@@ -17,6 +47,14 @@ function getAnimalsData(){
 
     }
 }
+
+function getAnimalsArray(){
+
+    return AnimalsArray;
+
+}
+
+
 function getKeepersData(){
     var requestURL = 'http://192.168.1.200:8080/keepers/allKeepers';
     var request = new XMLHttpRequest();
@@ -32,6 +70,13 @@ function getKeepersData(){
 
     }
 }
+
+function getKeepersArray(){
+
+    return KeepersArray;
+
+}
+
 function getEnclosureData(){
     var requestURL = 'http://192.168.1.200:8080/enclosures/allEnclosures';
     var request = new XMLHttpRequest();
@@ -47,6 +92,12 @@ function getEnclosureData(){
 
     }
 }
+
+function getEnclosureArray(){
+
+    return EnclosuresArray;
+
+}
 function getAllData(){
 
     getAnimalsData();
@@ -56,7 +107,7 @@ function getAllData(){
 }
 
 
-function CreateTableFromJSON(JSONArray) {
+function createTableFromJSON(JSONArray) {
 
     var col = [];
     for (var i = 0; i < JSONArray.length; i++) {
@@ -91,34 +142,3 @@ function CreateTableFromJSON(JSONArray) {
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 }
-
-
-function searchFilms(film){
-
-    document.getElementById('textArea').innerHTML = "";
-    if(film.value == ''){
-        return;
-    }
-    for(i=0; i < JSONArray.length; i++){
-        
-        if(JSONArray[i].title.includes(film.value.toUpperCase())){
-
-            document.getElementById('textArea').innerHTML += JSONArray[i].title + " <br>" + JSONArray[i].description + " <br>£" + JSONArray[i].price +" <br><br>";
-
-        }
-    }
-}
-function showFilmGenre(Genre){
-
-    document.getElementById('textArea').innerHTML = "";
- 
-    for(i=0; i < JSONArray.length; i++){
-        
-        if(JSONArray[i].category == Genre){
-
-            document.getElementById('textArea').innerHTML += JSONArray[i].title + " <br>" + JSONArray[i].description + " <br>£" + JSONArray[i].price   +" <br><br>";
-
-        }
-    }
-}
-
