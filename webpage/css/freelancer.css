@@ -38,6 +38,7 @@ table, td, th {
 
 }
 
+
 table, td {
   border: 1px solid black;
 
@@ -45,8 +46,15 @@ table, td {
   
   padding-left: 1rem;
   padding-right: 1rem;
+  
 
 }
+tr:hover {
+
+  background-color: #527496;
+
+}
+
 th {
   border: 2px solid black;
 

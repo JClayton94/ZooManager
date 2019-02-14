@@ -113,6 +113,9 @@ function createTableFromJSON(JSONArray) {
     for (var i = 0; i < col.length; i++) {
         var th = document.createElement("th");      
         th.innerHTML = col[i];
+        if(th.innerHTML == "speices"){
+            th.innerHTML = "species";
+        }
         tr.appendChild(th);
     }
 
@@ -127,7 +130,24 @@ function createTableFromJSON(JSONArray) {
 
                 tabCell.outerHTML = "<input value = '" + JSONArray[i][col[j]] + "' id = 'notes" + i + "' />"
             }
+            if(col[j] == "enclosureID"){
+                for(k = 0; k < EnclosuresArray.length; k++){
+                    if(EnclosuresArray[k].id == JSONArray[i][col[j]]) {
 
+                         tabCell.innerHTML = EnclosuresArray[k].name;
+
+                    }
+                }
+            }
+            if(col[j] == "keeperID"){
+                for(k = 0; k < KeepersArray.length; k++){
+                    if(KeepersArray[k].id == JSONArray[i][col[j]]) {
+
+                         tabCell.innerHTML = KeepersArray[k].name;
+
+                    }
+                }
+            }
         }
     }
     
