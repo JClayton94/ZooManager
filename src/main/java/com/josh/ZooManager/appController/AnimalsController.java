@@ -20,6 +20,7 @@ import com.josh.ZooManager.SpringBootException.ResourceNotFoundException;
 import com.josh.ZooManager.dataModels.AnimalsDataModel;
 import com.josh.ZooManager.repositories.AnimalsRepository;
 
+@CrossOrigin(origins="*",allowedHeaders="*")
 @RestController
 @RequestMapping("/animals")
 public class AnimalsController {
@@ -27,7 +28,6 @@ public class AnimalsController {
 	@Autowired 
 	AnimalsRepository repo;
 
-	@CrossOrigin
 	@GetMapping("/allAnimals")
 	public List<AnimalsDataModel> getAllAnimals(){
 		
@@ -53,7 +53,10 @@ public class AnimalsController {
 		AnimalsDataModel animal  = repo.findById(animalID).orElseThrow(() -> new ResourceNotFoundException("Animal", "id", animalID));
 		
 		animal.setSpeices(animalDetails.getSpeices());
-		
+		animal.setName(animalDetails.getName());
+		animal.setNotes(animalDetails.getNotes());
+		animal.setEnclosureID(animalDetails.getEnclosureID());
+		animal.setKeeperID(animalDetails.getKeeperID());
 		return repo.save(animal);
 	}
 	

@@ -20,6 +20,7 @@ import com.josh.ZooManager.SpringBootException.ResourceNotFoundException;
 import com.josh.ZooManager.dataModels.EnclosuresDataModel;
 import com.josh.ZooManager.repositories.EnclosuresRepository;
 
+@CrossOrigin(origins="*",allowedHeaders="*")
 @RestController
 @RequestMapping("/enclosures")
 public class EnclosureController {
@@ -27,7 +28,6 @@ public class EnclosureController {
 	@Autowired 
 	EnclosuresRepository repo;
 
-	@CrossOrigin
 	@GetMapping("/allEnclosures")
 	public List<EnclosuresDataModel> getAllEnclosures(){
 		

@@ -2,42 +2,14 @@ let AnimalsArray = [];
 let KeepersArray = [];
 let EnclosuresArray = [];
 
-let testData = [
-    {
-        "test1": "1",
-        "test2": "2",
-        "test3": "3",
-        "test4": "4",
-        "test5": "5"
-    },
-    {
-        "test1": "1",
-        "test2": "2",
-        "test3": "3",
-        "test4": "4",
-        "test5": "5"
-    },
-    {
-        "test1": "1",
-        "test2": "2",
-        "test3": "3",
-        "test4": "4",
-        "test5": "5"
-    }
-]
-
-function getTestData() {
-
-    return testData;
-
-}
-
 function getAnimalsData(){
-    var requestURL = 'http://192.168.1.200:8080/animals/allAnimals';
+    var requestURL = 'http://localhost:8080/animals/allAnimals';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
-    request.setRequestHeader('Content-Type', 'application/json');
+    request.setRequestHeader('Access-Control-Allow-Headers', '*');
     request.setRequestHeader('Access-Control-Allow-Origin', '*');
+    request.setRequestHeader('Content-Type', 'application/json');
+    
     request.responseType = 'json'
     request.send();
    
@@ -48,6 +20,22 @@ function getAnimalsData(){
     }
 }
 
+function updateAnimalNotes(){
+
+    let json = getNotesData();
+
+    for(i = 1; i <= json.length; i++){
+        let url = "http://localhost:8080/animals/animal/" + i;
+        let xhr = new XMLHttpRequest();
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        
+        xhr.send(json[i-1]);
+    }
+    saveSuccess();
+}
+
 function getAnimalsArray(){
 
     return AnimalsArray;
@@ -56,7 +44,7 @@ function getAnimalsArray(){
 
 
 function getKeepersData(){
-    var requestURL = 'http://192.168.1.200:8080/keepers/allKeepers';
+    var requestURL = 'http://localhost:8080/keepers/allKeepers';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.setRequestHeader('Content-Type', 'application/json');
@@ -78,7 +66,7 @@ function getKeepersArray(){
 }
 
 function getEnclosureData(){
-    var requestURL = 'http://192.168.1.200:8080/enclosures/allEnclosures';
+    var requestURL = 'http://localhost:8080/enclosures/allEnclosures';
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.setRequestHeader('Content-Type', 'application/json');
@@ -93,7 +81,7 @@ function getEnclosureData(){
     }
 }
 
-function getEnclosureArray(){
+function getEnclosuresArray(){
 
     return EnclosuresArray;
 
@@ -120,7 +108,7 @@ function createTableFromJSON(JSONArray) {
 
     var table = document.createElement("table");
 
-    var tr = table.insertRow(-1);                   
+    var tr = table.insertRow();                   
 
     for (var i = 0; i < col.length; i++) {
         var th = document.createElement("th");      
@@ -130,15 +118,46 @@ function createTableFromJSON(JSONArray) {
 
     for (var i = 0; i < JSONArray.length; i++) {
 
-        tr = table.insertRow(-1);
+        tr = table.insertRow();
 
         for (var j = 0; j < col.length; j++) {
-            var tabCell = tr.insertCell(-1);
+            var tabCell = tr.insertCell();
             tabCell.innerHTML = JSONArray[i][col[j]];
+            if(col[j] == "notes"){
+
+                tabCell.outerHTML = "<input value = '" + JSONArray[i][col[j]] + "' id = 'notes" + i + "' />"
+            }
+
         }
     }
     
     var divContainer = document.getElementById("textArea");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
+    
 }
+
+function getNotesData() {
+
+    let notesJSON = [];
+    let temp = "";
+
+    for(i = 0; i < AnimalsArray.length; i++) {
+
+       temp = AnimalsArray[i]; 
+
+       temp.notes = document.getElementById('notes' + i).value;
+       notesJSON.push(JSON.stringify(temp));
+
+    }
+    
+    return notesJSON;
+   
+}
+
+function saveSuccess() {
+
+    document.getElementById("Notification").innerHTML = "Save Successful!";
+
+}
+

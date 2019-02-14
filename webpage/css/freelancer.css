@@ -17,7 +17,46 @@ h6 {
   font-weight: 700;
   font-family: 'Montserrat';
 }
- 
+
+table, td, th {
+
+  margin: auto;
+
+}
+
+#Notification{
+
+  text-align: center;
+  font-size: 2rem;
+
+}
+
+#buttons{
+
+  margin: auto;
+
+
+}
+
+table, td {
+  border: 1px solid black;
+
+  text-align: center;
+  
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
+th {
+  border: 2px solid black;
+
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
 
 
 hr.star-light,

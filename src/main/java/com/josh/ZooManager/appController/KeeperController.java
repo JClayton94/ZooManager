@@ -20,6 +20,7 @@ import com.josh.ZooManager.SpringBootException.ResourceNotFoundException;
 import com.josh.ZooManager.dataModels.KeepersDataModel;
 import com.josh.ZooManager.repositories.KeepersRepository;
 
+@CrossOrigin(origins="*",allowedHeaders="*")
 @RestController
 @RequestMapping("/keepers")
 public class KeeperController {
@@ -27,7 +28,6 @@ public class KeeperController {
 	@Autowired 
 	KeepersRepository repo;
 
-	@CrossOrigin
 	@GetMapping("/allKeepers")
 	public List<KeepersDataModel> getAllKeepers(){
 		
